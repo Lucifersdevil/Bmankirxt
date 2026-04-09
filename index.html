@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apify Reel Scraper Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>🎬 APIFY REEL SCRAPER</h1>
+        <p>Dynamic Multi-Actor Video Fetching Dashboard</p>
+    </header>
+
+    <main class="dashboard">
+        <!-- Edoke Card -->
+        <section class="card edoke">
+            <div class="card-header">
+                <h2>Edoke</h2>
+                <span class="badge status-idle" id="status-edoke">Idle</span>
+            </div>
+            <div class="card-body">
+                <textarea id="custom-caption-edoke" placeholder="Add a custom caption (optional)..." class="custom-caption-input" rows="3"></textarea>
+                <button class="run-btn" id="run-edoke">
+                    <span class="icon">▶</span> Run Edoke
+                </button>
+            </div>
+            <div class="card-results" id="results-edoke">
+                <!-- Video and Caption appear here -->
+            </div>
+        </section>
+
+        <!-- Richesty Card -->
+        <section class="card richesty">
+            <div class="card-header">
+                <h2>Richesty</h2>
+                <span class="badge status-idle" id="status-richesty">Idle</span>
+            </div>
+            <div class="card-body">
+                <textarea id="custom-caption-richesty" placeholder="Add a custom caption (optional)..." class="custom-caption-input" rows="3"></textarea>
+                <button class="run-btn" id="run-richesty">
+                    <span class="icon">▶</span> Run Richesty
+                </button>
+            </div>
+            <div class="card-results" id="results-richesty">
+                 <!-- Video and Caption appear here -->
+            </div>
+        </section>
+
+        <!-- Optimus Card -->
+        <section class="card optimus">
+            <div class="card-header">
+                <h2>Optimus Chord</h2>
+                <span class="badge status-idle" id="status-optimus">Idle</span>
+            </div>
+            <div class="card-body">
+                <textarea id="custom-caption-optimus" placeholder="Add a custom caption (optional)..." class="custom-caption-input" rows="3"></textarea>
+                <button class="run-btn" id="run-optimus">
+                    <span class="icon">▶</span> Run Optimus
+                </button>
+            </div>
+            <div class="card-results" id="results-optimus">
+                 <!-- Video and Caption appear here -->
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
