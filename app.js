@@ -24,33 +24,46 @@ function displayResults(id, data, customCaptionText) {
         return;
     }
 
-    const item = data[0]; 
-    
-    // Safely extract the video URL (Apify formats vary slightly by actor but these are common)
-    const videoUrl = item.videoUrl || item.displayUrl || item.video_url || item.url;
-    // Safely extract caption
-    const originalCaption = item.caption || item.text || "No original caption found.";
+    resultsContainer.innerHTML = ''; // Clear loading state
 
-    let finalCaption = customCaptionText 
-        ? `[Custom Caption]: ${customCaptionText}\n\n---\n[Original]:\n${originalCaption}` 
-        : `[Original]:\n${originalCaption}`;
+    // Get up to 2 items
+    const itemsToDisplay = data.slice(0, 2);
 
-    let mediaHtml = '';
-    if (videoUrl) {
-         mediaHtml = `
-            <div class="video-container">
-                <video controls autoplay loop playsinline src="${videoUrl}"></video>
-            </div>
-         `;
-    } else {
-         mediaHtml = `<div class="caption-display" style="color: #fca5a5;">⚠️ No video URL found in the response for this reel. Note: if this is an image post, try changing the actor settings.</div>`;
-    }
+    itemsToDisplay.forEach((item, index) => {
+        // Safely extract the video URL
+        const videoUrl = item.videoUrl || item.displayUrl || item.video_url || item.url;
+        // Safely extract caption
+        const originalCaption = item.caption || item.text || "No original caption found.";
 
-    // Output the HTML
-    resultsContainer.innerHTML = `
-        ${mediaHtml}
-        <div class="caption-display">${finalCaption}</div>
-    `;
+        let finalCaption = customCaptionText 
+            ? `[Custom Caption]: ${customCaptionText}\n\n---\n[Original]:\n${originalCaption}` 
+            : `[Original]:\n${originalCaption}`;
+
+        let mediaHtml = '';
+        if (videoUrl) {
+             mediaHtml = `
+                <div class="video-container">
+                    <video controls autoplay loop playsinline src="${videoUrl}"></video>
+                </div>
+             `;
+        } else {
+             mediaHtml = `<div class="caption-display" style="color: #fca5a5;">⚠️ No video URL found in the response.</div>`;
+        }
+
+        const itemWrapper = document.createElement('div');
+        itemWrapper.style.marginBottom = "1.5rem";
+        if (index === 0 && itemsToDisplay.length > 1) {
+            itemWrapper.style.borderBottom = "1px solid rgba(255,255,255,0.1)";
+            itemWrapper.style.paddingBottom = "1.5rem";
+        }
+
+        itemWrapper.innerHTML = `
+            ${mediaHtml}
+            <div class="caption-display" style="margin-top: 1rem;">${finalCaption}</div>
+        `;
+        
+        resultsContainer.appendChild(itemWrapper);
+    });
 }
 
 async function runActor(id) {
