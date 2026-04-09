@@ -26,8 +26,8 @@ function displayResults(id, data, customCaptionText) {
 
     resultsContainer.innerHTML = ''; // Clear loading state
 
-    // Get up to 2 items
-    const itemsToDisplay = data.slice(0, 2);
+    // Get up to 3 items
+    const itemsToDisplay = data.slice(0, 3);
 
     itemsToDisplay.forEach((item, index) => {
         // Safely extract the video URL
@@ -52,7 +52,8 @@ function displayResults(id, data, customCaptionText) {
 
         const itemWrapper = document.createElement('div');
         itemWrapper.style.marginBottom = "1.5rem";
-        if (index === 0 && itemsToDisplay.length > 1) {
+        // Add a bottom border and padding to all items EXCEPT the very last one
+        if (index !== itemsToDisplay.length - 1) {
             itemWrapper.style.borderBottom = "1px solid rgba(255,255,255,0.1)";
             itemWrapper.style.paddingBottom = "1.5rem";
         }
