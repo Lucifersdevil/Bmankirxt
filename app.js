@@ -92,13 +92,9 @@ async function runActor(id) {
     btn.disabled = true;
     updateStatus(id, 'running', 'Running... (May take 30s+)');
     resultsContainer.innerHTML = `<div class="caption-display" style="opacity: 0.7; font-style: italic;">Fetching video and data from Instagram...</div>`;
-
+    
     try {
         const requestBody = { resultsLimit: 30 };
-        // The sarcasm button uses an actor that supports fetching posts as well as reels
-        if (id === 'sarcasm') {
-            requestBody.resultsType = 'details';
-        }
 
         // Run sync get dataset items via POST request 
         const response = await fetch(ACTORS[id], {
