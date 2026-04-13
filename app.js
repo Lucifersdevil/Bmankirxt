@@ -6,7 +6,9 @@ const ACTORS = {
     // 3. Optimus Chord button
     optimus: "https://api.apify.com/v2/actor-tasks/blissful_indication~instagram-reel-scraper-task-opt1/run-sync-get-dataset-items?token=apify_api_PF8nYUoRBlmCSIbID5HVAS7XeWJBz13Beoas",
     // 4. Sarcasm Reel button
-    sarcasm: "https://api.apify.com/v2/actor-tasks/miraculous_gadget~instagram-scraper-task-sarrcasm/run-sync-get-dataset-items?token=apify_api_FgUp4cxAGJFlIjdTNu7GX50ocKXS7Q05uofR"
+    sarcasm: "https://api.apify.com/v2/actor-tasks/miraculous_gadget~instagram-scraper-task-sarrcasm/run-sync-get-dataset-items?token=apify_api_FgUp4cxAGJFlIjdTNu7GX50ocKXS7Q05uofR",
+    // 5. Fitness button
+    fitness: "https://api.apify.com/v2/actor-tasks/meditative_algorithm~instagram-scraper-task-11/run-sync-get-dataset-items?token=apify_api_W4bN3IwRzkC9EwbWlecNC6VsBkdSd53zqhcg"
 };
 
 function updateStatus(id, status, text) {
@@ -127,3 +129,4 @@ document.getElementById('run-edoke').addEventListener('click', () => runActor('e
 document.getElementById('run-richesty').addEventListener('click', () => runActor('richesty'));
 document.getElementById('run-optimus').addEventListener('click', () => runActor('optimus'));
 document.getElementById('run-sarcasm').addEventListener('click', () => runActor('sarcasm'));
+document.getElementById('run-fitness').addEventListener('click', () => runActor('fitness'));

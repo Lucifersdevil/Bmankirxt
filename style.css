@@ -9,6 +9,10 @@
     --richesty-to: #3b82f6;
     --optimus-from: #f97316;
     --optimus-to: #ef4444;
+    --sarcasm-from: #10b981;
+    --sarcasm-to: #3b82f6;
+    --fitness-from: #f59e0b;
+    --fitness-to: #ef4444;
 }
 
 * {
@@ -83,6 +87,8 @@ header p {
 .card.edoke { border-top: 4px solid var(--edoke-from); }
 .card.richesty { border-top: 4px solid var(--richesty-from); }
 .card.optimus { border-top: 4px solid var(--optimus-from); }
+.card.sarcasm { border-top: 4px solid var(--sarcasm-from); }
+.card.fitness { border-top: 4px solid var(--fitness-from); }
 
 .card-header {
     display: flex;
@@ -162,6 +168,8 @@ header p {
 .edoke .run-btn { background: linear-gradient(135deg, var(--edoke-from), var(--edoke-to)); }
 .richesty .run-btn { background: linear-gradient(135deg, var(--richesty-from), var(--richesty-to)); }
 .optimus .run-btn { background: linear-gradient(135deg, var(--optimus-from), var(--optimus-to)); }
+.sarcasm .run-btn { background: linear-gradient(135deg, var(--sarcasm-from), var(--sarcasm-to)); }
+.fitness .run-btn { background: linear-gradient(135deg, var(--fitness-from), var(--fitness-to)); }
 
 
 .card-results {
