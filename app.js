@@ -34,8 +34,11 @@ function displayResults(id, data, customCaptionText) {
     const itemsToDisplay = shuffledData.slice(0, 3);
 
     itemsToDisplay.forEach((item, index) => {
-        // Safely extract the video URL
-        const videoUrl = item.videoUrl || item.displayUrl || item.video_url || item.url;
+        // Safely extract the media URL
+        const mediaUrl = item.videoUrl || item.displayUrl || item.video_url || item.url;
+        // Determine if it's a video
+        const isVideo = item.type === 'Video' || item.isVideo === true || (mediaUrl && mediaUrl.includes('.mp4'));
+        
         // Safely extract caption
         const originalCaption = item.caption || item.text || "No original caption found.";
 
@@ -44,14 +47,22 @@ function displayResults(id, data, customCaptionText) {
             : `[Original]:\n${originalCaption}`;
 
         let mediaHtml = '';
-        if (videoUrl) {
-             mediaHtml = `
-                <div class="video-container">
-                    <video controls autoplay loop playsinline src="${videoUrl}"></video>
-                </div>
-             `;
+        if (mediaUrl) {
+            if (isVideo) {
+                mediaHtml = `
+                    <div class="video-container">
+                        <video controls autoplay loop playsinline src="${mediaUrl}"></video>
+                    </div>
+                `;
+            } else {
+                mediaHtml = `
+                    <div class="video-container">
+                        <img src="${mediaUrl}" style="width: 100%; border-radius: 8px;" alt="Instagram Post" />
+                    </div>
+                `;
+            }
         } else {
-             mediaHtml = `<div class="caption-display" style="color: #fca5a5;">⚠️ No video URL found in the response.</div>`;
+             mediaHtml = `<div class="caption-display" style="color: #fca5a5;">⚠️ No media URL found in the response.</div>`;
         }
 
         const itemWrapper = document.createElement('div');
@@ -83,11 +94,17 @@ async function runActor(id) {
     resultsContainer.innerHTML = `<div class="caption-display" style="opacity: 0.7; font-style: italic;">Fetching video and data from Instagram...</div>`;
 
     try {
+        const requestBody = { resultsLimit: 30 };
+        // The sarcasm button uses an actor that supports fetching posts as well as reels
+        if (id === 'sarcasm') {
+            requestBody.resultsType = 'details';
+        }
+
         // Run sync get dataset items via POST request 
         const response = await fetch(ACTORS[id], {
             method: 'POST', 
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ resultsLimit: 30 }) // Override task default limit to fetch more items for randomness
+            body: JSON.stringify(requestBody) // Override task default limit
         });
 
         if (!response.ok) {
