@@ -6,7 +6,7 @@ const ACTORS = {
     // 3. Optimus Chord button
     optimus: "https://api.apify.com/v2/actor-tasks/blissful_indication~instagram-reel-scraper-task-opt1/run-sync-get-dataset-items?token=apify_api_PF8nYUoRBlmCSIbID5HVAS7XeWJBz13Beoas",
     // 4. Sarcasm Reel button
-    sarcasm: "https://api.apify.com/v2/actor-tasks/miraculous_gadget~instagram-scraper-task-sanyam/run-sync-get-dataset-items?token=apify_api_FgUp4cxAGJFlIjdTNu7GX50ocKXS7Q05uofR"
+    sarcasm: "https://api.apify.com/v2/actor-tasks/miraculous_gadget~instagram-scraper-task-sarrcasm/run-sync-get-dataset-items?token=apify_api_FgUp4cxAGJFlIjdTNu7GX50ocKXS7Q05uofR"
 };
 
 function updateStatus(id, status, text) {
@@ -28,8 +28,10 @@ function displayResults(id, data, customCaptionText) {
 
     resultsContainer.innerHTML = ''; // Clear loading state
 
+    // Shuffle the data array to get different (random) reels each time
+    const shuffledData = [...data].sort(() => 0.5 - Math.random());
     // Get up to 3 items
-    const itemsToDisplay = data.slice(0, 3);
+    const itemsToDisplay = shuffledData.slice(0, 3);
 
     itemsToDisplay.forEach((item, index) => {
         // Safely extract the video URL
