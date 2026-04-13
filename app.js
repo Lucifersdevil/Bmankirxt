@@ -87,7 +87,7 @@ async function runActor(id) {
         const response = await fetch(ACTORS[id], {
             method: 'POST', 
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({}) // Send empty JSON body to use task defaults
+            body: JSON.stringify({ resultsLimit: 30 }) // Override task default limit to fetch more items for randomness
         });
 
         if (!response.ok) {
